@@ -89,9 +89,10 @@ body {
   height: 200%;
 }
 
-.wave-layers > use {
+.wave-layers path {
+  will-change: transform;
   animation: 
-    wave-rise 2s cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards,
+    wave-rise 2.2s cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards,
     wave-flow 4s ease-in-out infinite;
 }
 
@@ -107,17 +108,16 @@ body {
 
 .layer3 {
   animation-delay: 0.4s, -2s;
-  opacity: 1;
 }
 
 @keyframes wave-rise {
-  0% { transform: translateY(120%); }
-  100% { transform: translateY(-120%); }
+  0% { transform: translateY(110%); }
+  100% { transform: translateY(-110%); }
 }
 
 @keyframes wave-flow {
-  0%, 100% { transform: translateX(-25%); }
-  50% { transform: translateX(0%); }
+  0%, 100% { transform: translateX(-15%); }
+  50% { transform: translateX(15%); }
 }
 
 
