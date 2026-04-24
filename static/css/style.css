@@ -99,6 +99,8 @@ h1 {
   font-size: var(--font-size-xl);
   margin-bottom: var(--space-md);
   color: var(--color-primary);
+  text-shadow: 0 0 8px rgba(14, 165, 233, 0.4);
+  letter-spacing: 2px;
 }
 
 #main-content p {
@@ -106,17 +108,43 @@ h1 {
   font-size: var(--font-size-lg);
 }
 
-/* ===== グラスモフィズムカード ===== */
+/* ===== フューチャー・グラスカード ===== */
 .profile-card {
   background: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(14, 165, 233, 0.3);
   border-radius: var(--radius-lg);
   padding: var(--space-lg) var(--space-xl);
-  box-shadow: 0 8px 32px 0 rgba(14, 165, 233, 0.1);
+  box-shadow: 
+    0 8px 32px 0 rgba(14, 165, 233, 0.1),
+    inset 0 0 20px rgba(14, 165, 233, 0.05);
   max-width: 600px;
   animation: slide-in-right 1s ease-out forwards;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.profile-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 12px 40px 0 rgba(14, 165, 233, 0.2),
+    0 0 15px rgba(34, 211, 238, 0.3);
+}
+
+/* カードの角に光るアクセント */
+.profile-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  border-top: 3px solid var(--color-secondary);
+  border-right: 3px solid var(--color-secondary);
+  border-radius: 0 var(--radius-lg) 0 0;
+  opacity: 0.6;
 }
 
 @keyframes slide-in-right {
