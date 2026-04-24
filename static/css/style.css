@@ -1,0 +1,144 @@
+/* ===== デザイントークン ===== */
+:root {
+  /* カラー (ライトモード・水色) */
+  --color-primary:    #0ea5e9; /* スカイブルー */
+  --color-secondary:  #22d3ee; /* シアン */
+  --color-bg:         #f0f9ff; /* 極めて薄い水色 */
+  --color-surface:    #ffffff; /* 純白 */
+  --color-text:       #0c4a6e; /* 濃い紺色 (読みやすさ重視) */
+  --color-muted:      #64748b; /* グレーブルー */
+
+  /* タイポグラフィ */
+  --font-sans: 'Inter', 'Noto Sans JP', sans-serif;
+  --font-size-sm:   0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg:   1.25rem;
+  --font-size-xl:   2rem;
+
+  /* スペーシング */
+  --space-xs:  0.25rem;
+  --space-sm:  0.5rem;
+  --space-md:  1rem;
+  --space-lg:  2rem;
+  --space-xl:  4rem;
+
+  /* ボーダー */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+
+  /* トランジション */
+  --transition: 0.25s ease;
+}
+
+/* ===== ベーススタイル ===== */
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== ヘッダー ===== */
+#site-header {
+  padding: var(--space-md) var(--space-lg);
+  background: var(--color-surface);
+  border-bottom: 1px solid #e0f2fe;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+}
+
+#site-header nav {
+  display: flex;
+  gap: var(--space-md);
+}
+
+#site-header nav a {
+  color: var(--color-muted);
+  transition: color var(--transition);
+  font-size: var(--font-size-sm);
+}
+
+#site-header nav a:hover {
+  color: var(--color-text);
+}
+
+/* ===== メインコンテンツ ===== */
+#main-content {
+  flex: 1;
+  padding: var(--space-xl) var(--space-lg);
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--space-md);
+}
+
+/* ===== フッター ===== */
+#site-footer {
+  text-align: center;
+  padding: var(--space-md);
+  color: var(--color-muted);
+  font-size: var(--font-size-sm);
+  background-color: var(--color-bg); /* 波の最後と同じ色にする */
+  position: relative;
+  z-index: 10;
+}
+
+/* ===== 波のアニメーション ===== */
+.wave-container {
+  width: 100%;
+  height: 15vh;
+  min-height: 100px;
+  max-height: 150px;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.waves {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* アニメーション */
+.parallax > use {
+  animation: move-forever 25s cubic-bezier(.55, .5, .45, .5) infinite;
+}
+.parallax > use:nth-child(1) {
+  animation-delay: -2s;
+  animation-duration: 7s;
+}
+.parallax > use:nth-child(2) {
+  animation-delay: -3s;
+  animation-duration: 10s;
+}
+.parallax > use:nth-child(3) {
+  animation-delay: -4s;
+  animation-duration: 13s;
+}
+.parallax > use:nth-child(4) {
+  animation-delay: -5s;
+  animation-duration: 20s;
+}
+
+@keyframes move-forever {
+  0% {
+   transform: translate3d(-90px, 0, 0);
+  }
+  100% { 
+    transform: translate3d(85px, 0, 0);
+  }
+}
+
+/* モバイル対応 */
+@media (max-width: 768px) {
+  .wave-container {
+    height: 40px;
+    min-height: 40px;
+  }
+}

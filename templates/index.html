@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="ページの説明をここに記入" />
+  <title>プロフィール</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/reset.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+
+  <header id="site-header">
+    <nav>
+      <a href="{{ url_for('index') }}">ホーム</a>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <h1>ようこそ</h1>
+    <p>
+      name: ryushi <br>
+      age: 16 <br>
+      birthday: 2010/02/01 <br>
+      hobbys: programming, game(minecraft,etc...)
+    </p>
+  </main>
+
+  <!-- 波のアニメーション -->
+  <div class="wave-container">
+    <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+    viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+      <defs>
+        <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+      </defs>
+      <g class="parallax">
+        <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(14, 165, 233, 0.3)" />
+        <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(34, 211, 238, 0.2)" />
+        <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(14, 165, 233, 0.1)" />
+        <use xlink:href="#gentle-wave" x="48" y="7" fill="var(--color-bg)" />
+      </g>
+    </svg>
+  </div>
+
+  <footer id="site-footer">
+    <p>&copy; 2026 サイト名</p>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>
