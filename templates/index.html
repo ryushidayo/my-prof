@@ -9,6 +9,14 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
 </head>
 <body>
+  <!-- オープニング・ウェーブ演出 -->
+  <div id="loading-overlay">
+    <div class="opening-wave">
+      <svg viewBox="0 24 150 28" preserveAspectRatio="none">
+        <path d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" fill="var(--color-primary)" />
+      </svg>
+    </div>
+  </div>
 
   <header id="site-header">
     <div class="header-container">
