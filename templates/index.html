@@ -11,9 +11,18 @@
 <body>
 
   <header id="site-header">
-    <nav>
-      <a href="{{ url_for('index') }}">ホーム</a>
-    </nav>
+    <div class="header-container">
+      <div class="logo">
+        <a href="{{ url_for('index') }}">RYUSHI<span>.dev</span></a>
+      </div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#main-content">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="https://github.com/ryushidayo" target="_blank" class="github-link">GitHub</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
   <main id="main-content">
@@ -26,7 +35,7 @@
         hobbys: programming, game(minecraft,etc...)
       </p>
 
-      <div class="skills-section">
+      <div id="skills" class="skills-section">
         <h2>Skills</h2>
         <div class="skill-item">
           <span class="skill-name">Python / Flask</span>

@@ -63,26 +63,91 @@ body::before {
   pointer-events: none;
 }
 
-/* ===== ヘッダー ===== */
+/* ===== ヘッダー (ダーク・グラスモフィズム & スティッキー) ===== */
 #site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 0;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(6, 182, 212, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}
+
+.header-container {
+  max-width: 1200px;
+  margin: 0 auto;
   padding: var(--space-md) var(--space-lg);
-  background: var(--color-surface);
-  border-bottom: 1px solid rgba(255,255,255,0.07);
-}
-
-#site-header nav {
   display: flex;
-  gap: var(--space-md);
+  justify-content: space-between;
+  align-items: center;
 }
 
-#site-header nav a {
-  color: var(--color-muted);
-  transition: color var(--transition);
-  font-size: var(--font-size-sm);
-}
-
-#site-header nav a:hover {
+.logo a {
+  font-size: var(--font-size-lg);
+  font-weight: 800;
   color: var(--color-text);
+  letter-spacing: 2px;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+.logo a span {
+  color: var(--color-secondary);
+}
+
+.logo a:hover {
+  text-shadow: 0 0 12px rgba(6, 182, 212, 0.5);
+}
+
+.nav-links {
+  display: flex;
+  gap: var(--space-lg);
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--color-muted);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  transition: var(--transition);
+  position: relative;
+}
+
+.nav-links a:hover {
+  color: var(--color-secondary);
+}
+
+/* リンクの下線アニメーション */
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-secondary);
+  transition: var(--transition);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.github-link {
+  padding: var(--space-xs) var(--space-sm);
+  border: 1px solid var(--color-secondary);
+  border-radius: var(--radius-sm);
+  color: var(--color-secondary) !important;
+}
+
+.github-link:hover {
+  background: var(--color-secondary);
+  color: var(--color-bg) !important;
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.3);
 }
 
 /* ===== メインコンテンツ ===== */
