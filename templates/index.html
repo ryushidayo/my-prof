@@ -9,10 +9,10 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
 </head>
 <body>
-  <!-- サイバー・グリッド・オープニング演出 -->
-  <div id="grid-loader">
-    <div class="grid-container" id="grid-container"></div>
-    <div class="loader-text">INITIALIZING<span>...</span></div>
+  <!-- 案2：スキャンライン・オープニング演出 -->
+  <div id="scan-loader">
+    <div class="scan-line"></div>
+    <div class="loader-text">SCANNING SYSTEM<span>...</span></div>
   </div>
 
   <!-- メインコンテンツをラップ -->
@@ -83,26 +83,12 @@
 
   <script src="{{ url_for('static', filename='js/main.js') }}"></script>
   <script>
-    // サイバー・グリッド演出の制御
+    // スキャンライン演出の制御
     window.addEventListener('DOMContentLoaded', () => {
-      const gridContainer = document.getElementById('grid-container');
-      const loader = document.getElementById('grid-loader');
+      const loader = document.getElementById('scan-loader');
       const content = document.getElementById('page-content');
       
-      // グリッドを生成 (10x10)
-      const rows = 10;
-      const cols = 10;
-      const totalCells = rows * cols;
-      
-      for (let i = 0; i < totalCells; i++) {
-        const cell = document.createElement('div');
-        cell.className = 'grid-cell';
-        // ランダムな遅延を設定してバラバラに消えるようにする
-        cell.style.animationDelay = `${Math.random() * 0.8 + 0.5}s`;
-        gridContainer.appendChild(cell);
-      }
-      
-      // 2秒後にコンテンツを表示
+      // 1.8秒後にコンテンツを表示
       setTimeout(() => {
         loader.classList.add('fade-out');
         content.classList.add('show');
