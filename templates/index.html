@@ -13,7 +13,14 @@
   <div id="loading-overlay">
     <div class="opening-wave">
       <svg viewBox="0 24 150 28" preserveAspectRatio="none">
-        <path d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" fill="var(--color-primary)" />
+        <defs>
+          <path id="wave-path" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="wave-layers">
+          <use xlink:href="#wave-path" x="48" y="0" class="layer1" fill="rgba(14, 165, 233, 0.3)" />
+          <use xlink:href="#wave-path" x="48" y="3" class="layer2" fill="rgba(34, 211, 238, 0.5)" />
+          <use xlink:href="#wave-path" x="48" y="5" class="layer3" fill="var(--color-primary)" />
+        </g>
       </svg>
     </div>
   </div>
@@ -91,16 +98,16 @@
       const overlay = document.getElementById('loading-overlay');
       const content = document.getElementById('page-content');
       
-      // 2秒後にオーバーレイを消してコンテンツを表示
+      // 2.5秒後にオーバーレイを消してコンテンツを表示
       setTimeout(() => {
         overlay.classList.add('fade-out');
         content.classList.add('show');
         
-        // 完全に消えたら要素自体を削除して操作を邪魔しないようにする
+        // 完全に消えたら要素自体を削除
         setTimeout(() => {
           overlay.remove();
-        }, 500);
-      }, 1500);
+        }, 800);
+      }, 2000);
     });
   </script>
   {% block scripts %}{% endblock %}

@@ -83,17 +83,41 @@ body {
 
 .opening-wave svg {
   position: absolute;
-  bottom: -100%; /* 画面の下に隠す */
+  bottom: -100%;
   left: 0;
-  width: 100%;
-  height: 200%; /* 画面を覆うのに十分な高さ */
-  animation: wave-rise 1.5s ease-in-out forwards;
+  width: 200%;
+  height: 200%;
+}
+
+.wave-layers > use {
+  animation: 
+    wave-rise 2s cubic-bezier(0.445, 0.05, 0.55, 0.95) forwards,
+    wave-flow 4s ease-in-out infinite;
+}
+
+.layer1 {
+  animation-delay: 0s, 0s;
+  opacity: 0.3;
+}
+
+.layer2 {
+  animation-delay: 0.2s, -1s;
+  opacity: 0.6;
+}
+
+.layer3 {
+  animation-delay: 0.4s, -2s;
+  opacity: 1;
 }
 
 @keyframes wave-rise {
-  0% { transform: translateY(100%); }
-  50% { transform: translateY(0%); }
-  100% { transform: translateY(-100%); }
+  0% { transform: translateY(120%); }
+  100% { transform: translateY(-120%); }
+}
+
+@keyframes wave-flow {
+  0%, 100% { transform: translateX(-25%); }
+  50% { transform: translateX(0%); }
 }
 
 
