@@ -75,18 +75,18 @@ body {
 h1 {
   font-size: var(--font-size-xl);
   margin-bottom: var(--space-md);
-  animation: slide-in-left 1s ease-out forwards;
+  animation: slide-in-right 1s ease-out forwards;
 }
 
 #main-content p {
   line-height: 1.6;
-  animation: slide-in-left 1.2s ease-out forwards;
+  animation: slide-in-right 1.2s ease-out forwards;
 }
 
-@keyframes slide-in-left {
+@keyframes slide-in-right {
   0% {
     opacity: 0;
-    transform: translateX(-50px);
+    transform: translateX(100px);
   }
   100% {
     opacity: 1;
