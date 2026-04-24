@@ -41,12 +41,19 @@ body {
   flex-direction: column;
   position: relative;
   overflow-x: hidden;
-  opacity: 0;
-  animation: page-fade-in 1s ease-out 1.5s forwards;
 }
 
-@keyframes page-fade-in {
-  to { opacity: 1; }
+/* メインコンテンツの表示制御 */
+#page-content {
+  opacity: 0;
+  transition: opacity 0.8s ease-out;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#page-content.show {
+  opacity: 1;
 }
 
 /* ===== オープニング・ウェーブ演出 ===== */
@@ -58,12 +65,13 @@ body {
   height: 100%;
   background: var(--color-bg);
   z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
-  animation: overlay-out 0.4s ease-in 1.5s forwards;
   pointer-events: none;
+  transition: opacity 0.5s ease-out;
+}
+
+#loading-overlay.fade-out {
+  opacity: 0;
 }
 
 .opening-wave {
@@ -88,10 +96,7 @@ body {
   100% { transform: translateY(-100%); }
 }
 
-@keyframes overlay-out {
-  0% { opacity: 1; visibility: visible; }
-  100% { opacity: 0; visibility: hidden; }
-}
+
 
 /* ===== 幾何学的な背景模様 (線と焔) ===== */
 body::before {

@@ -18,70 +18,91 @@
     </div>
   </div>
 
-  <header id="site-header">
-    <div class="header-container">
-      <div class="logo">
-        <a href="{{ url_for('index') }}">RYUSHI<span>.dev</span></a>
+  <!-- メインコンテンツをラップ -->
+  <div id="page-content">
+    <header id="site-header">
+      <div class="header-container">
+        <div class="logo">
+          <a href="{{ url_for('index') }}">RYUSHI<span>.dev</span></a>
+        </div>
+        <nav>
+          <ul class="nav-links">
+            <li><a href="#main-content">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="https://github.com/ryushidayo" target="_blank" class="github-link">GitHub</a></li>
+          </ul>
+        </nav>
       </div>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="#main-content">About</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="https://github.com/ryushidayo" target="_blank" class="github-link">GitHub</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+    </header>
 
-  <main id="main-content">
-    <div class="profile-card">
-      <h1>ようこそ</h1>
-      <p>
-        <strong>name:</strong> ryushi <br>
-        <strong>age:</strong> 16 <br>
-        <strong>birthday:</strong> 2010/02/01 <br>
-        <strong>hobbys:</strong> programming, game(minecraft,etc...)
-      </p>
+    <main id="main-content">
+      <div class="profile-card">
+        <h1>ようこそ</h1>
+        <p>
+          <strong>name:</strong> ryushi <br>
+          <strong>age:</strong> 16 <br>
+          <strong>birthday:</strong> 2010/02/01 <br>
+          <strong>hobbys:</strong> programming, game(minecraft,etc...)
+        </p>
 
-      <div id="skills" class="skills-section">
-        <h2>Skills</h2>
-        <div class="skill-item">
-          <span class="skill-name">Python / Flask</span>
-          <div class="skill-bar"><div class="skill-progress" style="--p: 85%;"></div></div>
-        </div>
-        <div class="skill-item">
-          <span class="skill-name">HTML / CSS</span>
-          <div class="skill-bar"><div class="skill-progress" style="--p: 90%;"></div></div>
-        </div>
-        <div class="skill-item">
-          <span class="skill-name">Game Dev</span>
-          <div class="skill-bar"><div class="skill-progress" style="--p: 30%;"></div></div>
+        <div id="skills" class="skills-section">
+          <h2>Skills</h2>
+          <div class="skill-item">
+            <span class="skill-name">Python / Flask</span>
+            <div class="skill-bar"><div class="skill-progress" style="--p: 85%;"></div></div>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name">HTML / CSS</span>
+            <div class="skill-bar"><div class="skill-progress" style="--p: 90%;"></div></div>
+          </div>
+          <div class="skill-item">
+            <span class="skill-name">Game Dev</span>
+            <div class="skill-bar"><div class="skill-progress" style="--p: 30%;"></div></div>
+          </div>
         </div>
       </div>
-    </div>
-  </main>
+    </main>
 
-  <!-- 波のアニメーション -->
-  <div class="wave-container">
-    <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-    viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-      <defs>
-        <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-      </defs>
-      <g class="parallax">
-        <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(14, 165, 233, 0.3)" />
-        <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(34, 211, 238, 0.2)" />
-        <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(14, 165, 233, 0.1)" />
-        <use xlink:href="#gentle-wave" x="48" y="7" fill="var(--color-bg)" />
-      </g>
-    </svg>
+    <!-- 波のアニメーション (フッター用) -->
+    <div class="wave-container">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+      viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(14, 165, 233, 0.3)" />
+          <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(34, 211, 238, 0.2)" />
+          <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(14, 165, 233, 0.1)" />
+          <use xlink:href="#gentle-wave" x="48" y="7" fill="var(--color-bg)" />
+        </g>
+      </svg>
+    </div>
+
+    <footer id="site-footer">
+      <p>&copy; 2026 RYUSHI.dev</p>
+    </footer>
   </div>
 
-  <footer id="site-footer">
-    <p>&copy; 2026 サイト名</p>
-  </footer>
-
   <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <script>
+    // オープニング演出の制御
+    window.addEventListener('DOMContentLoaded', () => {
+      const overlay = document.getElementById('loading-overlay');
+      const content = document.getElementById('page-content');
+      
+      // 2秒後にオーバーレイを消してコンテンツを表示
+      setTimeout(() => {
+        overlay.classList.add('fade-out');
+        content.classList.add('show');
+        
+        // 完全に消えたら要素自体を削除して操作を邪魔しないようにする
+        setTimeout(() => {
+          overlay.remove();
+        }, 500);
+      }, 1500);
+    });
+  </script>
   {% block scripts %}{% endblock %}
 </body>
 </html>
