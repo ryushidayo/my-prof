@@ -172,6 +172,12 @@ h1 {
   margin-bottom: var(--space-lg);
 }
 
+#main-content p strong {
+  color: var(--color-muted);
+  font-weight: 700;
+  margin-right: var(--space-xs);
+}
+
 /* ===== スキルセクション ===== */
 .skills-section {
   margin-top: var(--space-lg);
