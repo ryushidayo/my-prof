@@ -9,17 +9,10 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
 </head>
 <body>
-  <!-- オープニング・ウェーブ演出 -->
-  <div id="loading-overlay">
-    <div class="opening-wave">
-      <svg viewBox="0 24 150 28" preserveAspectRatio="none">
-        <g class="wave-layers">
-          <path class="layer1" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" fill="rgba(14, 165, 233, 0.3)" />
-          <path class="layer2" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" fill="rgba(34, 211, 238, 0.5)" />
-          <path class="layer3" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" fill="var(--color-primary)" />
-        </g>
-      </svg>
-    </div>
+  <!-- サイバー・グリッド・オープニング演出 -->
+  <div id="grid-loader">
+    <div class="grid-container" id="grid-container"></div>
+    <div class="loader-text">INITIALIZING<span>...</span></div>
   </div>
 
   <!-- メインコンテンツをラップ -->
@@ -90,21 +83,34 @@
 
   <script src="{{ url_for('static', filename='js/main.js') }}"></script>
   <script>
-    // オープニング演出の制御
+    // サイバー・グリッド演出の制御
     window.addEventListener('DOMContentLoaded', () => {
-      const overlay = document.getElementById('loading-overlay');
+      const gridContainer = document.getElementById('grid-container');
+      const loader = document.getElementById('grid-loader');
       const content = document.getElementById('page-content');
       
-      // 2.5秒後にオーバーレイを消してコンテンツを表示
+      // グリッドを生成 (10x10)
+      const rows = 10;
+      const cols = 10;
+      const totalCells = rows * cols;
+      
+      for (let i = 0; i < totalCells; i++) {
+        const cell = document.createElement('div');
+        cell.className = 'grid-cell';
+        // ランダムな遅延を設定してバラバラに消えるようにする
+        cell.style.animationDelay = `${Math.random() * 0.8 + 0.5}s`;
+        gridContainer.appendChild(cell);
+      }
+      
+      // 2秒後にコンテンツを表示
       setTimeout(() => {
-        overlay.classList.add('fade-out');
+        loader.classList.add('fade-out');
         content.classList.add('show');
         
-        // 完全に消えたら要素自体を削除
         setTimeout(() => {
-          overlay.remove();
-        }, 800);
-      }, 2000);
+          loader.remove();
+        }, 1000);
+      }, 1800);
     });
   </script>
   {% block scripts %}{% endblock %}
