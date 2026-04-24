@@ -9,10 +9,11 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
 </head>
 <body>
-  <!-- 案2：スキャンライン・オープニング演出 -->
-  <div id="scan-loader">
-    <div class="scan-line"></div>
-    <div class="loader-text">SCANNING SYSTEM<span>...</span></div>
+  <!-- 案3：ダイアゴナル・スライド・オープニング演出 -->
+  <div id="diagonal-loader">
+    <div class="panel-top"></div>
+    <div class="panel-bottom"></div>
+    <div class="loader-text">ACCESS GRANTED</div>
   </div>
 
   <!-- メインコンテンツをラップ -->
@@ -83,12 +84,12 @@
 
   <script src="{{ url_for('static', filename='js/main.js') }}"></script>
   <script>
-    // スキャンライン演出の制御
+    // ダイアゴナル・スライド演出の制御
     window.addEventListener('DOMContentLoaded', () => {
-      const loader = document.getElementById('scan-loader');
+      const loader = document.getElementById('diagonal-loader');
       const content = document.getElementById('page-content');
       
-      // 1.8秒後にコンテンツを表示
+      // 1.5秒後にコンテンツを表示
       setTimeout(() => {
         loader.classList.add('fade-out');
         content.classList.add('show');
@@ -96,7 +97,7 @@
         setTimeout(() => {
           loader.remove();
         }, 1000);
-      }, 1800);
+      }, 1500);
     });
   </script>
   {% block scripts %}{% endblock %}

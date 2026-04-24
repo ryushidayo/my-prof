@@ -56,60 +56,64 @@ body {
   opacity: 1;
 }
 
-/* ===== 案2：スキャンライン・オープニング ===== */
-#scan-loader {
+/* ===== 案3：ダイアゴナル・スライド・オープニング ===== */
+#diagonal-loader {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: var(--color-bg);
   z-index: 9999;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  transition: opacity 0.8s ease-in-out;
-}
-
-#scan-loader.fade-out {
-  opacity: 0;
   pointer-events: none;
 }
 
-.scan-line {
+.panel-top, .panel-bottom {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 4px;
-  background: var(--color-secondary);
-  box-shadow: 
-    0 0 25px var(--color-secondary),
-    0 0 50px var(--color-primary);
-  z-index: 10001;
-  animation: scan-move 1.8s ease-in-out forwards;
+  height: 100%;
+  background: var(--color-bg);
+  transition: transform 1s cubic-bezier(0.85, 0, 0.15, 1);
 }
 
-@keyframes scan-move {
-  0% { top: 0; opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { top: 100%; opacity: 0; }
+/* 対角線で分割 */
+.panel-top {
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+  border-bottom: 2px solid var(--color-secondary);
+}
+
+.panel-bottom {
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  border-top: 2px solid var(--color-secondary);
+}
+
+/* アニメーション開始時 */
+#diagonal-loader.fade-out .panel-top {
+  transform: translate(-100%, -100%);
+}
+
+#diagonal-loader.fade-out .panel-bottom {
+  transform: translate(100%, 100%);
 }
 
 .loader-text {
+  position: relative;
+  z-index: 10001;
   font-family: var(--font-sans);
   font-weight: 800;
-  letter-spacing: 6px;
+  letter-spacing: 10px;
   color: var(--color-secondary);
-  text-shadow: 0 0 15px rgba(6, 182, 212, 0.6);
-  animation: text-blink 0.2s infinite;
+  text-shadow: 0 0 20px rgba(6, 182, 212, 0.6);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
 
-@keyframes text-blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.8; }
+#diagonal-loader.fade-out .loader-text {
+  opacity: 0;
+  transform: scale(1.2);
 }
 
 
